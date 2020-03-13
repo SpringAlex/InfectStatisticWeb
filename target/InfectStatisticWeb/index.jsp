@@ -3,11 +3,13 @@
 <head>
     <title>$Title$</title>
     <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
-    <script  type="text/javascript" src="${pageContext.request.contextPath }/JS/svgmap/js/lib/raphael-min.js"></script>
-    <script  type="text/javascript" src="${pageContext.request.contextPath }/JS/svgmap/js/res/chinaMapConfig.js"></script>
-    <script  type="text/javascript" src="${pageContext.request.contextPath }/JS/svgmap/js/res/worldMapConfig.js"></script>
-    <script  type="text/javascript" src="${pageContext.request.contextPath }/JS/svgmap/js/map.js"></script>
+    <script  type="text/javascript" src="JS/svgmap/js/lib/raphael-min.js"></script>
+    <script  type="text/javascript" src="JS/svgmap/js/res/chinaMapConfig.js"></script>
+    <script  type="text/javascript" src="JS/svgmap/js/res/worldMapConfig.js"></script>
+    <script  type="text/javascript" src="/JS/svgmap/js/map.js"></script>
     <script type="text/javascript" src="index.js"></script>
+
+    <script type="text/javascript" src="JS/echarts.min.js"></script>
 
     <link href="index.css" rel="stylesheet" type="text/css"/>
 
@@ -63,6 +65,28 @@
 			background:url(JS/svgmap/images/map_color.png) center 0;"></div>
             </div>
         </div>
+    </div>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:400px;">
+        <script>
+            var myChart = echarts.init(document.getElementById('main'));
+
+            option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: 'line'
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
     </div>
 </div>
 

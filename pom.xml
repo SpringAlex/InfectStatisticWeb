@@ -44,6 +44,11 @@
       <artifactId>htmlunit</artifactId>
       <version>2.27</version>
     </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.17</version>
+    </dependency>
   </dependencies>
 
   <build>
