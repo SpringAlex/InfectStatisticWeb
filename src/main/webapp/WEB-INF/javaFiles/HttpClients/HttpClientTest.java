@@ -11,8 +11,40 @@ import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class HttpClientTest {
+    public static void analysisData(String html){
+        //解析html为dom树
+        String num_1=null;
+        Document document= Jsoup.parse(html);
+        Elements elements=document.select(
+                "div[class=ptab-0]");
+        Elements es=document.getElementsByClass(
+                "ptab-0"
+        );
+        if(elements.size()==0){
+            System.out.println("size==0");
+        }
+        else{
+            System.out.println("size!=0");
+        }
+        if(es.size()!=0){
+            System.out.println("es size!=0");
+            num_1=es.first().text();
+        }
+        for(Element e :elements){
+            num_1= e.getElementsByClass(
+                    "VirusSummarySix_1-1-207_3haLBF VirusSummarySix_1-1-207_2ZJJBJ").first().text();
+        }
+        if(num_1!=null){
+            System.out.println(num_1);
+        }
+    }
+
     public static void main(String[] args) {
         //1.生成httpclient，相当于该打开一个浏览器
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -30,6 +62,9 @@ public class HttpClientTest {
                 String html = EntityUtils.toString(httpEntity, "utf-8");
                 //输出网页信息
                 System.out.println(html);
+                System.out.println("开始分析程序");
+                analysisData(html);
+                System.out.println("分析程序结束");
             } else {
                 //如果返回状态不是200，比如404（页面不存在）等，根据情况做处理，这里略
                 System.out.println("返回状态不是200");
