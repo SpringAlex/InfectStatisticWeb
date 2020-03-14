@@ -40,6 +40,10 @@
         </ul>
 
     </div>
+    <div class="data">
+        <input type="date" id="cur_day_province" value="2020-01-31"/>
+        <input type="button" class="btn" value="查询"/>
+    </div>
 <div id="main" style="width: 600px;height:400px;margin:0 auto;"></div>
     <div class="buttons">
         <button  id="but-1" type="button" value="btn-1" onclick="aaa(this.id)">新增确诊趋势</button>
@@ -56,8 +60,9 @@
     <script type="text/javascript" src="../JS/echarts.min.js"></script>
     <script type="text/javascript" src="../JS/myJS/ShowEchart.js"></script>
 
-</div>
+
 
 <script type="text/javascript" src="../JS/svgmap/js/lib/SyntaxHighlighter.js"></script>
+</div>
 </body>
 </html>
