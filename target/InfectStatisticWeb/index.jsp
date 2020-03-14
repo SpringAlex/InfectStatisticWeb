@@ -37,9 +37,7 @@
                 <span class="yesterdaySerious">xxxx</span>
             </li>
         </ul>
-        <div class="internal">
-            </br>
-        </div>
+
         <ul class="dataInfo_total">
             <li>
                 <div class="dataTitle">累计确诊</div>
@@ -69,11 +67,15 @@
         <div class="content">
             　　<div>
             　　　     <p>累计感染地图</p>
+            <div class="data">
+                <input type="date" id="total_day" value="2020-01-31"/>
+                <input type="button" class="btn" value="查询"/>
+            </div>
             　　</div>
             <div class="active">　
                 <div class="data">
                     <input type="date" id="cur_day" value="2020-01-31"/>
-                    <input type="button" id="btn" value="查询"/>
+                    <input type="button" class="btn" value="查询"/>
                 </div>
                 <!-- items item9 代表ChinaMap-->
                 <div class="items" id="Item9">
