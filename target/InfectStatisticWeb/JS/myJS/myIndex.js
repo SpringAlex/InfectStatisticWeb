@@ -99,7 +99,11 @@ $(function(){
 
         // stateTipY: 0,
         clickCallback: function(stateData, obj){
-            window.location.href="newPage/province.jsp";
+            var province=obj.name;
+            var url="newPage/province.jsp?province="+province;
+            url=encodeURI(url);
+            url=encodeURI(url);
+            window.location.href=url;
         },
 
 
@@ -144,5 +148,14 @@ $(function(){
     });
     $('#MapColor').show();
 
+    $(".tabbox li").click(function ()
+    {
+        //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");
+        //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active")
+            .siblings().removeClass("active");
+    });
 
 });

@@ -141,3 +141,20 @@ body{
     Noto Sans,sans-serif,Helvetica Neue,PingFang SC,Hiragino Sans GB,
     Microsoft YaHei UI,Microsoft YaHei,Arial;
 }
+
+.tabbox{margin:10px;}
+.tabbox ul{list-style:none;display:table;}
+.tabbox ul li{float:left;width:100px;line-height:30px;padding-left:8px;border:1px solid #aaccff;margin-right:-1px;cursor:pointer;}
+.tabbox ul li.active{background-color:#e73839;color:white;font-weight:bold;}
+.tabbox .content{border:1px solid #aaccff;padding:10px;}
+.tabbox .content>div{display:none;}
+.tabbox .content>div.active{display:block;}
+
+.mapList{
+    margin: 0 auto;
+}
+
+#btn{
+    width: 90px;
+    height: 25px;
+}
