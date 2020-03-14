@@ -1,4 +1,3 @@
-//加载中国地图
 $(function(){
     var num1=0.20;
 
@@ -99,6 +98,10 @@ $(function(){
         // stateTipX: 2,
 
         // stateTipY: 0,
+        clickCallback: function(stateData, obj){
+            window.location.href="newPage/province.jsp";
+        },
+
 
         stateTipHtml: function (mapData, obj) {
 
@@ -128,6 +131,7 @@ $(function(){
             top: $(mapObj_1[thisName].node).offset().top - 40
         }).html(thisHtml).show();
         mapObj_1[thisName].attr({
+
             fill: '#c7fffd'
         });
     }, function () {
@@ -139,5 +143,6 @@ $(function(){
         });
     });
     $('#MapColor').show();
+
 
 });
