@@ -13,37 +13,39 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 
 public class InfectStatistic {
-	private String lastDate;  //ÓÃ»§Ñ¡ÔñµÄÈÕÆÚ
-	private String pathOfLog = "D:/log/";  //ÈÕÖ¾ÎÄ¼şËùÔÚÄ¿Â¼
+	private String lastDate;  //ç”¨æˆ·é€‰æ‹©çš„æ—¥æœŸ
+	private String pathOfLog = "D:/log/";  //æ—¥å¿—æ–‡ä»¶æ‰€åœ¨ç›®å½•
 	
-	public String[] allNeedDate;  //¼ÇÂ¼ËùÓĞÓÃ»§Ñ¡¶¨ÈÕÆÚÖ®Ç°£¨°üÀ¨Ñ¡¶¨µ±Ìì£©µÄÈÕÆÚ£¬¸ñÊ½£ºyyyy-mm-dd
-	//public ArrayList<Province> allProvince = new ArrayList<Province>();  //ÓÃÓÚ¼ÇÂ¼Ê¡·İÀàµÄÊµÀı¶ÔÏó
+	public String[] allNeedDate;  //è®°å½•æ‰€æœ‰ç”¨æˆ·é€‰å®šæ—¥æœŸä¹‹å‰ï¼ˆåŒ…æ‹¬é€‰å®šå½“å¤©ï¼‰çš„æ—¥æœŸï¼Œæ ¼å¼ï¼šyyyy-mm-dd
+	//public ArrayList<Province> allProvince = new ArrayList<Province>();  //ç”¨äºè®°å½•çœä»½ç±»çš„å®ä¾‹å¯¹è±¡
 	public ArrayList<Province> allProvince;
-	private String[] allProvinceName = {"ÁÉÄş","¼ªÁÖ","ºÚÁú½­","ºÓ±±","É½Î÷","ÉÂÎ÷","¸ÊËà","Çàº£","É½¶«","°²»Õ","½­ËÕ","Õã½­","ºÓÄÏ","ºş±±","ºşÄÏ","½­Î÷","Ì¨Íå","¸£½¨","ÔÆÄÏ","º£ÄÏ","ËÄ´¨","¹óÖİ","¹ã¶«","ÄÚÃÉ¹Å","ĞÂ½®","¹ãÎ÷","Î÷²Ø","ÄşÏÄ","±±¾©","ÉÏº£","Ìì½ò","ÖØÇì","Ïã¸Û","°ÄÃÅ"};
-	
-	
+	private String[] allProvinceName = {"è¾½å®","å‰æ—","é»‘é¾™æ±Ÿ","æ²³åŒ—","å±±è¥¿","é™•è¥¿","ç”˜è‚ƒ","é’æµ·","å±±ä¸œ","å®‰å¾½","æ±Ÿè‹","æµ™æ±Ÿ","æ²³å—","æ¹–åŒ—","æ¹–å—","æ±Ÿè¥¿","å°æ¹¾","ç¦å»º","äº‘å—","æµ·å—","å››å·","è´µå·","å¹¿ä¸œ","å†…è’™å¤","æ–°ç–†","å¹¿è¥¿","è¥¿è—","å®å¤","åŒ—äº¬","ä¸Šæµ·","å¤©æ´¥","é‡åº†","é¦™æ¸¯","æ¾³é—¨"};
+	public String[] allProvinceName2 = {"liaoning","jilin","heilongjiang","hebei","shanxi","shaanxi","gansu","qinghai","shandong","anhui","jiangsu","zhejiang","henan","hubei","hunan","jiangxi","taiwan","fujian","yunnan","hainan","sichuan","guizhou","guangdong","neimongol","xinjiang","guangxi","xizang","ningxia","beijing","shanghai","tianjin","chongqing","hongkong","macau"};
+			
 	public class Province
 	{
-		public String provinceName;  //Ê¡·İÃû×Ö
+		public String provinceName;  //çœä»½åå­—
+		public String provinceName2;//çœä»½æ‹¼éŸ³åå­—
 
-		public int ip;  //µ±Ç°¸ĞÈ¾»¼ÕßÊıÄ¿
-	    public int sp;  //µ±Ç°ÒÉËÆ»¼ÕßÊıÄ¿
-	    public int cure;  //µ±Ç°£¨ÀÛ¼Æ£©ÖÎÓúÊıÄ¿
-	    public int dead;  //µ±Ç°£¨ÀÛ¼Æ£©ËÀÍöÊıÄ¿
+		public int ip;  //å½“å‰æ„ŸæŸ“æ‚£è€…æ•°ç›®
+	    public int sp;  //å½“å‰ç–‘ä¼¼æ‚£è€…æ•°ç›®
+	    public int cure;  //å½“å‰ï¼ˆç´¯è®¡ï¼‰æ²»æ„ˆæ•°ç›®
+	    public int dead;  //å½“å‰ï¼ˆç´¯è®¡ï¼‰æ­»äº¡æ•°ç›®
 	    
-	    public int allIp;  //ÀÛ¼ÆÈ·Õï»¼ÕßÊıÁ¿
-	    public int newIp;  //µ±ÌìĞÂÔöÈ·ÕïÊıÁ¿
+	    public int allIp;  //ç´¯è®¡ç¡®è¯Šæ‚£è€…æ•°é‡
+	    public int newIp;  //å½“å¤©æ–°å¢ç¡®è¯Šæ•°é‡
 	    
-	    //ÓÃ¶¯Ì¬Êı¾İ¼ÇÂ¼Ã¿ÌìµÄÇé¿ö
-	    public ArrayList<Integer> everyDayAddIp = new ArrayList<Integer>();//Ã¿ÌìĞÂÔöÈ·Õï
-	    public ArrayList<Integer> everyDayIP = new ArrayList<Integer>();//Ã¿ÌìÀÛ¼ÆÈ·ÕïÊı
-	    public ArrayList<Integer> everyDayCure = new ArrayList<Integer>();//Ã¿ÌìÀÛ¼ÆÖÎÓúÊı
-	    public ArrayList<Integer> everyDayDead = new ArrayList<Integer>();//Ã¿ÌìÀÛ¼ÆËÀÍöÊı
+	    //ç”¨åŠ¨æ€æ•°æ®è®°å½•æ¯å¤©çš„æƒ…å†µ
+	    public ArrayList<Integer> everyDayAddIp = new ArrayList<Integer>();//æ¯å¤©æ–°å¢ç¡®è¯Š
+	    public ArrayList<Integer> everyDayIP = new ArrayList<Integer>();//æ¯å¤©ç´¯è®¡ç¡®è¯Šæ•°
+	    public ArrayList<Integer> everyDayCure = new ArrayList<Integer>();//æ¯å¤©ç´¯è®¡æ²»æ„ˆæ•°
+	    public ArrayList<Integer> everyDayDead = new ArrayList<Integer>();//æ¯å¤©ç´¯è®¡æ­»äº¡æ•°
 	    
-	    //Description:¹¹Ôìº¯Êı
-	    public Province(String provinceName)
+	    //Description:æ„é€ å‡½æ•°
+	    public Province(String provinceName,String provinceName2)
 	    {
 	    	this.provinceName=provinceName;
+	    	this.provinceName2=provinceName2;
 	    	ip=0;
 	    	sp=0;
 	    	cure=0;
@@ -53,44 +55,60 @@ public class InfectStatistic {
 	    }
 	    
 	   
-	   //Description:¼ÇÂ¼Ç÷ÊÆ
+	   //Description:è®°å½•è¶‹åŠ¿
 	   public void RecordTrend()
 	   {
-		   everyDayAddIp.add(newIp);//ĞÂÔöÈ·ÕïÇ÷ÊÆ
-		   everyDayIP.add(allIp);//ÀÛ¼ÆÈ·ÕïÇ÷ÊÆ
-		   everyDayCure.add(cure);//ÀÛ¼ÆÖÎÓúÇ÷ÊÆ
-		   everyDayDead.add(dead);//ÀÛ¼ÆËÀÍöÇ÷ÊÆ
+		   everyDayAddIp.add(newIp);//æ–°å¢ç¡®è¯Šè¶‹åŠ¿
+		   everyDayIP.add(allIp);//ç´¯è®¡ç¡®è¯Šè¶‹åŠ¿
+		   everyDayCure.add(cure);//ç´¯è®¡æ²»æ„ˆè¶‹åŠ¿
+		   everyDayDead.add(dead);//ç´¯è®¡æ­»äº¡è¶‹åŠ¿
 		   
-		   newIp = 0;//µ±ÌìµÄĞÂÔöÈ·ÕïÁ¿£¬µ±ÌìÍ³¼ÆÍê³Éºó£¬ĞÂÔöÈ·ÕïÊıÁ¿ÇåÁã
+		   newIp = 0;//å½“å¤©çš„æ–°å¢ç¡®è¯Šé‡ï¼Œå½“å¤©ç»Ÿè®¡å®Œæˆåï¼Œæ–°å¢ç¡®è¯Šæ•°é‡æ¸…é›¶
 	   }
 	}
 	
 	
 	
 	
-	//Description:¹¹Ôìº¯Êı
+	//Description:æ„é€ å‡½æ•°
 	public InfectStatistic(String date) {
 		this.lastDate = date;
 		allProvince = new ArrayList<Province>();
-		//´´½¨ËùÓĞÊ¡·İÊµÀı¶ÔÏó
+		//åˆ›å»ºæ‰€æœ‰çœä»½å®ä¾‹å¯¹è±¡
 		for (int i = 0;i < 34;i++)
 		{
-			Province province = new Province(allProvinceName[i]);
+			Province province = new Province(allProvinceName[i],allProvinceName2[i]);
 			allProvince.add(province);
 		}
 		
-		getAllNeedDate();//»ñÈ¡·ûºÏÓÃ»§Ñ¡ÔñµÄÈÕÆÚÇ°µÄÈÕÆÚ£¨°üÀ¨Ñ¡¶¨µ±Ìì£©
+		getAllNeedDate();//è·å–ç¬¦åˆç”¨æˆ·é€‰æ‹©çš„æ—¥æœŸå‰çš„æ—¥æœŸï¼ˆåŒ…æ‹¬é€‰å®šå½“å¤©ï¼‰
 	}
 	
-	public ArrayList<Province> getAllprovince()
+	public int[] getNationSituation()
 	{
-		return allProvince;
+		int nationIp=0;//å…¨å›½ç°æœ‰ç¡®è¯Š
+		int nationSp=0;//å…¨å›½ç°æœ‰ç–‘ä¼¼
+		int nationAllIp=0;//å…¨å›½ç´¯è®¡ç¡®è¯Š
+		int nationAllCure=0;//å…¨å›½ç´¯è®¡(ç°æœ‰)æ²»æ„ˆ
+		int nationAllDead=0;//å…¨å›½ç´¯è®¡(ç°æœ‰)æ­»äº¡
+		
+		for (int i=0;i<34;i++)
+		{
+			nationIp+=allProvince.get(i).ip;
+			nationSp+=allProvince.get(i).sp;
+			nationAllIp+=allProvince.get(i).allIp;
+			nationAllCure+=allProvince.get(i).cure;
+			nationAllDead+=allProvince.get(i).dead;
+		}
+		
+		int[] nation= {nationIp,nationSp,nationAllIp,nationAllCure,nationAllDead};
+		return nation;
 	}
 	
-	//Description:»ñÈ¡·ûºÏÓÃ»§Ñ¡ÔñµÄÈÕÆÚÇ°µÄÈÕÆÚ£¨°üÀ¨Ñ¡¶¨µ±Ìì£©
+	//Description:è·å–ç¬¦åˆç”¨æˆ·é€‰æ‹©çš„æ—¥æœŸå‰çš„æ—¥æœŸï¼ˆåŒ…æ‹¬é€‰å®šå½“å¤©ï¼‰
 	private void getAllNeedDate()
 	{
-		int count=0;  //ÓÃÓÚ¼ÇÂ¼·ûºÏÒªÇóµÄÈÕÆÚµÄÌìÊı
+		int count=0;  //ç”¨äºè®°å½•ç¬¦åˆè¦æ±‚çš„æ—¥æœŸçš„å¤©æ•°
 		File file = new File(pathOfLog);
         File[] allLogFiles = file.listFiles();   
         String[] allLogFilesName = new String[allLogFiles.length];
@@ -117,7 +135,7 @@ public class InfectStatistic {
         }
 	}
 
-	//Description:¶ÁÈ¡ÈÕÖ¾ÎÄ¼ş£¬µÃµ½¸÷Ê¡µÄÒßÇéÊı¾İ
+	//Description:è¯»å–æ—¥å¿—æ–‡ä»¶ï¼Œå¾—åˆ°å„çœçš„ç–«æƒ…æ•°æ®
 	public void analyzeInfectSituation() throws IOException
 	{
 		for (int i = 0;i < allNeedDate.length;i++)
@@ -130,12 +148,12 @@ public class InfectStatistic {
 						new FileInputStream(pathOfLog+allNeedDate[i]+".log.txt"));
 				BufferedReader br = new BufferedReader(isr);
 				while ((oneLineOfFile = br.readLine()) != null
-						&& oneLineOfFile.length() != 0  //²»¶ÁÈ¡¿ÕĞĞ
-						&& oneLineOfFile.startsWith("//") == false)  //²»¶ÁÈ¡×¢ÊÍĞĞ
+						&& oneLineOfFile.length() != 0  //ä¸è¯»å–ç©ºè¡Œ
+						&& oneLineOfFile.startsWith("//") == false)  //ä¸è¯»å–æ³¨é‡Šè¡Œ
 				{
 					//System.out.println(oneLineOfFile);	
 					
-					//Í³¼ÆÊ¡·İµÄ¸ĞÈ¾ÈËÊı£¬ÒÉËÆÈËÊı£¬ÖÎÓúÈËÊıºÍËÀÍöÈËÊı
+					//ç»Ÿè®¡çœä»½çš„æ„ŸæŸ“äººæ•°ï¼Œç–‘ä¼¼äººæ•°ï¼Œæ²»æ„ˆäººæ•°å’Œæ­»äº¡äººæ•°
 					getProvincialInformation(oneLineOfFile);
 				}
 				br.close();
@@ -154,8 +172,8 @@ public class InfectStatistic {
 	}
 	
 
-	//Description:·ÖÎöÈÕÖ¾ÎÄ¼şÖĞµÄÃ¿ĞĞ£¬Í³¼Æ³öÏàÓ¦ÈËÊıÇé¿ö
-	//Input:´ÓÈÕÖ¾ÎÄ¼ş¶ÁÈ¡³öµÄÒ»ĞĞĞÅÏ¢
+	//Description:åˆ†ææ—¥å¿—æ–‡ä»¶ä¸­çš„æ¯è¡Œï¼Œç»Ÿè®¡å‡ºç›¸åº”äººæ•°æƒ…å†µ
+	//Input:ä»æ—¥å¿—æ–‡ä»¶è¯»å–å‡ºçš„ä¸€è¡Œä¿¡æ¯
 	private void getProvincialInformation(String oneLineOfFile)
 	{
 		String[] splitString = oneLineOfFile.split(" ");
@@ -167,13 +185,13 @@ public class InfectStatistic {
 			{
 				if (allProvince.get(i).provinceName.equals(splitString[0]))
 				{
-					if (splitString[1].equals("ËÀÍö"))
+					if (splitString[1].equals("æ­»äº¡"))
 					{
 						allProvince.get(i).dead += countOfPeople;
 						allProvince.get(i).ip -= countOfPeople;
 						break;
 					}
-					else if (splitString[1].equals("ÖÎÓú"))
+					else if (splitString[1].equals("æ²»æ„ˆ"))
 					{
 						allProvince.get(i).cure += countOfPeople;
 						allProvince.get(i).ip -= countOfPeople;
@@ -188,31 +206,31 @@ public class InfectStatistic {
 			{
 				if (allProvince.get(i).provinceName.equals(splitString[0]))
 				{
-					if (splitString[1].equals("ĞÂÔö")
-						&& splitString[2].equals("¸ĞÈ¾»¼Õß"))
+					if (splitString[1].equals("æ–°å¢")
+						&& splitString[2].equals("æ„ŸæŸ“æ‚£è€…"))
 					{	
 						allProvince.get(i).ip += countOfPeople;
-						allProvince.get(i).newIp += countOfPeople;//ĞÂÔö¸ĞÈ¾»¼ÕßÔö¼Ó
-						allProvince.get(i).allIp += countOfPeople;//ÀÛ¼Æ¸ĞÈ¾»¼ÕßÔö¼Ó
+						allProvince.get(i).newIp += countOfPeople;//æ–°å¢æ„ŸæŸ“æ‚£è€…å¢åŠ 
+						allProvince.get(i).allIp += countOfPeople;//ç´¯è®¡æ„ŸæŸ“æ‚£è€…å¢åŠ 
 						break;
 					}
-					else if (splitString[1].equals("ĞÂÔö")
-						&& splitString[2].equals("ÒÉËÆ»¼Õß"))
+					else if (splitString[1].equals("æ–°å¢")
+						&& splitString[2].equals("ç–‘ä¼¼æ‚£è€…"))
 					{
 						allProvince.get(i).sp += countOfPeople;
 						break;
 					}
-					else if (splitString[1].equals("ÒÉËÆ»¼Õß")
-						&& splitString[2].equals("È·Õï¸ĞÈ¾"))
+					else if (splitString[1].equals("ç–‘ä¼¼æ‚£è€…")
+						&& splitString[2].equals("ç¡®è¯Šæ„ŸæŸ“"))
 					{
 						allProvince.get(i).sp -= countOfPeople;
 						allProvince.get(i).ip += countOfPeople;
-						allProvince.get(i).newIp += countOfPeople;//ĞÂÔö¸ĞÈ¾»¼ÕßÔö¼Ó
-						allProvince.get(i).allIp += countOfPeople;//ÀÛ¼Æ¸ĞÈ¾»¼ÕßÔö¼Ó
+						allProvince.get(i).newIp += countOfPeople;//æ–°å¢æ„ŸæŸ“æ‚£è€…å¢åŠ 
+						allProvince.get(i).allIp += countOfPeople;//ç´¯è®¡æ„ŸæŸ“æ‚£è€…å¢åŠ 
 						break;
 					}
-					else if (splitString[1].equals("ÅÅ³ı")
-						&& splitString[2].equals("ÒÉËÆ»¼Õß"))
+					else if (splitString[1].equals("æ’é™¤")
+						&& splitString[2].equals("ç–‘ä¼¼æ‚£è€…"))
 					{
 						allProvince.get(i).sp -= countOfPeople;
 						break;
@@ -226,22 +244,22 @@ public class InfectStatistic {
 			{
 				if (allProvince.get(i).provinceName.equals(splitString[0]))
 				{
-					if (splitString[1].equals("¸ĞÈ¾»¼Õß"))
+					if (splitString[1].equals("æ„ŸæŸ“æ‚£è€…"))
 					{
 						allProvince.get(i).ip -= countOfPeople;
 					}
-					else if (splitString[1].equals("ÒÉËÆ»¼Õß"))
+					else if (splitString[1].equals("ç–‘ä¼¼æ‚£è€…"))
 					{
 						allProvince.get(i).sp -= countOfPeople;
 					}
 				}
 				else if (allProvince.get(i).provinceName.equals(splitString[3]))
 				{
-					if (splitString[1].equals("¸ĞÈ¾»¼Õß"))
+					if (splitString[1].equals("æ„ŸæŸ“æ‚£è€…"))
 					{
 						allProvince.get(i).ip += countOfPeople;
 					}
-					else if (splitString[1].equals("ÒÉËÆ»¼Õß"))
+					else if (splitString[1].equals("ç–‘ä¼¼æ‚£è€…"))
 					{
 						allProvince.get(i).sp += countOfPeople;
 					}
@@ -251,9 +269,9 @@ public class InfectStatistic {
 	} 
 	
 
-	//Description:ÌáÈ¡×Ö·û´®µ±ÖĞµÄÊı×Ö²¢×ª»»³ÉÕûÊı·µ»Ø
-	//Input:Ò»¸ö°üº¬ÁËÊı×Ö×Ö·ûµÄ×Ö·û´®
-	//Return:Ò»¸öÕûÊı
+	//Description:æå–å­—ç¬¦ä¸²å½“ä¸­çš„æ•°å­—å¹¶è½¬æ¢æˆæ•´æ•°è¿”å›
+	//Input:ä¸€ä¸ªåŒ…å«äº†æ•°å­—å­—ç¬¦çš„å­—ç¬¦ä¸²
+	//Return:ä¸€ä¸ªæ•´æ•°
 	private int getStringNumber(String str)
 	{
 		str = str.trim();
