@@ -1,0 +1,54 @@
+body{text-align:center;}
+#wrap{
+    background: url(../JS/svgmap/images/bg.png);
+    width: 800px;
+    height: 110px;
+    margin: 0 auto;
+}
+.provinceData{
+    width: 600px;
+    height: 80px;
+    margin: 0 auto;
+}
+.dataBoard{
+    width:500px;
+    height:50px;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+.dataBoard li{
+    width:100px;
+    margin:0 10px;
+    float: left;
+}
+.dataTitle{
+    font:14px/20px -apple-system-font,system-ui,
+    -apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,
+    Noto Sans,sans-serif,Helvetica Neue,PingFang SC,Hiragino Sans GB,
+    Microsoft YaHei UI,Microsoft YaHei,Arial;
+}
+.currentInflu{
+    color:orange;
+}
+.yesterdayInflu{
+    color:orange;
+}
+.totalInflu{
+    color:red;
+}
+.totalYesterdayInflu{
+    color:red;
+}
+.totalSafe{
+    color:green;
+}
+.totalYesterdaySafe{
+    color:green;
+}
+.totalDead{
+    color:gray;
+}
+.totalYesterdayDead{
+    color:gray;
+}
